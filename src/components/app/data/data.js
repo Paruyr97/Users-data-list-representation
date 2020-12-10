@@ -102,35 +102,6 @@ export default class Table extends React.Component{
         this.setState({ showForm: true });
     }
 
-    getPageRange = (currentPage) => {
-        const { data } = this.state;
-
-        let start;
-        let end;
-
-        if(currentPage <= 3){
-            start = currentPage + 1;
-        }else{
-            start = currentPage - 1;
-        }
-
-        if(start + 5 < data.length){
-            end = start + 5
-        }else{
-            // data.length - currentPage
-            start = data.length - currentPage + 1
-            end = start + data.length - currentPage
-        }
-
-        const res = []
-
-        for(let i = start; i <= end; i++){
-            res.push(i)
-        }
-
-        return res;
-     }
-
     componentDidMount(){
         this.fetchData().then(data => this.setState( { ...this.state, initialData: data, data: this.dataSplitter(data), loading: false } ));
     }
