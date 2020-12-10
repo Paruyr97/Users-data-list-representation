@@ -1,5 +1,7 @@
 import React, {Component} from 'react';
+
 import '../../../index.css';
+
 
 export default class AddUser extends Component {
 
@@ -16,11 +18,14 @@ export default class AddUser extends Component {
         if(!value.trim()){
             return;
         }
+        
         this.setState({[type]: value});
     }
 
     render(){
+
         const {id, firstName, lastName, email, phone} = this.state;
+
         return (
             <div className="add_table">
                 <input type='text' value={id} placeholder='write your id' onChange={(event) => this.handleChange(event, 'id')}/>

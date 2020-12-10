@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
-import Table from './data';
 import {Link, BrowserRouter as Router} from 'react-router-dom';
+
+import Table from './data';
 import "../../index.css";
 
 export default class App extends Component {
