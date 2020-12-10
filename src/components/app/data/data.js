@@ -1,12 +1,12 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { Link, BrowserRouter as Router } from 'react-router-dom';
 
 import Arrow from '../arrow';
 import Detail from '../detail';
 import Search from '../search';
 import AddUser from '../add-user';
 import './data.css';
-import { Link, BrowserRouter as Router } from 'react-router-dom';
 
 
 const SHORT_URL = 'http://www.filltext.com/?rows=32&id=%7Bnumber%7C1000%7D&firstName=%7BfirstName%7D&lastName=%7BlastName%7D&email=%7Bemail%7D&phone=%7Bphone%7C(xxx)xxx-xx-xx%7D&address=%7BaddressObject%7D&description=%7Blorem%7C32%7D';
@@ -111,6 +111,7 @@ export default class Table extends React.Component{
         if(prevState.initialData.length && prevState.initialData.length !== this.state.initialData.length){
             this.setState({data: this.dataSplitter(this.state.initialData)});
         }
+
     }
 
     render(){
@@ -172,8 +173,7 @@ export default class Table extends React.Component{
                     <button onClick={this.openForm} className="add_btn">add user</button>
 
                     {showForm ? <AddUser addUser={this.addUser}/> : null}
-
-                    
+  
                 </div>
             </Router>
         )
