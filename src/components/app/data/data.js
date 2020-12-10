@@ -120,8 +120,6 @@ export default class Table extends React.Component{
 
         const pages = Array.from({length: data.length}, (v, i) => i + 1);
 
-        console.log(pages);
-
         if(loading){
             return (
                 <h1 className="loading-container">loading...</h1>
@@ -129,7 +127,6 @@ export default class Table extends React.Component{
         }
 
         return (
-            <Router>
                 <div className="Table-container">
                 {showDetail ? <Detail info={detailInfo} closeShowDetail={this.closeShowDetail}/> : null}
                     <Search filter={this.filter}/>
@@ -161,21 +158,23 @@ export default class Table extends React.Component{
                     </table>
 
                     <div className='buttons' style={ { display: data.length === 1 ? 'none' : 'flex' } }>
-                        <Link to={`/users/${page + 1}`}><button disabled={!page} className='btn'  onClick={this.handlePage}>&laquo; prev</button></Link>
-                        { 
-                            pages.slice(page > data.length - 5 ? data.length - 5 : page, page > data.length ? data.length:  page + 5).map(item => { 
-                                return <Link to={`/users/${item}`}><button style={{padding: '10px 32px', margin: '4px 2px'}} className={page + 1 === item ? 'active' : ''} key={item} onClick={() => this.setState({page: item - 1})}>{item}</button></Link>
-                            })
-                        }
-                        <Link to={`/users/${page + 1}`}><button disabled={data.length <= page + 1} className="btn" onClick={() => this.handlePage('next')}>next &raquo;</button></Link>
+                        <Router>
+                            <Link to={`/users/${page + 1}`}><button disabled={!page} className='btn'  onClick={this.handlePage}>&laquo; prev</button></Link>
+                            { 
+                                pages.slice(page > data.length - 5 ? data.length - 5 : page, page > data.length ? data.length:  page + 5).map(item => { 
+                                    return <Link  key={item} to={`/users/${item}`}><button style={{padding: '10px 32px', margin: '4px 2px'}} className={page + 1 === item ? 'active' : ''} onClick={() => this.setState({page: item - 1})}>{item}</button></Link>
+                                })
+                            }
+                            <Link to={`/users/${page + 1}`}><button disabled={data.length <= page + 1} className="btn" onClick={() => this.handlePage('next')}>next &raquo;</button></Link>
+                        </Router>
                     </div>
+                   
 
                     <button onClick={this.openForm} className="add_btn">add user</button>
 
                     {showForm ? <AddUser addUser={this.addUser}/> : null}
   
                 </div>
-            </Router>
         )
     }
 }
