@@ -128,7 +128,7 @@ export default class Table extends React.Component{
 
         return (
                 <div className="Table-container">
-                {showDetail ? <Detail info={detailInfo} closeShowDetail={this.closeShowDetail}/> : null}
+                {showDetail && <Detail info={detailInfo} closeShowDetail={this.closeShowDetail}/>}
                     <Search filter={this.filter}/>
                     <table border="1" className="Table">
                         <thead className="Table-head">
@@ -172,7 +172,7 @@ export default class Table extends React.Component{
 
                     <button onClick={this.openForm} className="add_btn">add user</button>
 
-                    {showForm ? <AddUser addUser={this.addUser}/> : null}
+                    {showForm && <AddUser addUser={this.addUser}/>}
   
                 </div>
         )
